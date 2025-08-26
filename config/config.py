@@ -8,11 +8,11 @@ load_dotenv()
 
 
 # Get this value from my.telegram.org/apps
-API_ID = int(getenv("API_ID", "27883552"))
-API_HASH = getenv("API_HASH", "03e8a15853d2aa580c52aea314d26711")
+API_ID = int(getenv("API_ID")
+API_HASH = getenv("API_HASH",)
 
 ## Get it from @Botfather in Telegram.
-BOT_TOKEN = getenv("BOT_TOKEN", "8136057336:AAFAnd9Q5qCZOYJt4d4FpMFrWh-Q0elAHuw")
+BOT_TOKEN = getenv("BOT_TOKEN",)
 
 # Get Your bot username
 BOT_USERNAME = getenv("BOT_USERNAME" , "herormusic_bot")
