@@ -56,7 +56,7 @@ LOGGER_ID = int(getenv("LOGGER_ID", "-1002276316266"))
 
 # Your User ID.
 OWNER_ID = list(
-    map(int, getenv("OWNER_ID", "8210867664").split())
+    map(int, getenv("OWNER_ID", "445302279").split())
 )  # Input type must be interger
 
 ## Fill these variables if you're deploying on heroku.
