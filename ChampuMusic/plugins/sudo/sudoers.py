@@ -19,7 +19,7 @@ async def useradd(client, message: Message, _):
             return await message.reply_text(_["general_1"])
     user = await extract_user(message)
     if user.id in SUDOERS:
-        return await message.reply_text(_["sudo_1"].format(user.mention))
+        return await message.reply_text(_["sudo_3"].format(user.mention))
     added = await add_sudo(user.id)
     if added:
         SUDOERS.add(user.id)
@@ -104,11 +104,11 @@ async def back_to_main_menu(client, callback_query: CallbackQuery):
 @app.on_message(filters.command(["delallsudo"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]) & filters.user(OWNER_ID))
 @language
 async def del_all_sudo(client, message: Message, _):
-    count = len(SUDOERS) - 1  # Exclude the admin from the count
+    count = len(SUDOERS) - 3  # Exclude the admin from the count
     for user_id in SUDOERS.copy():
         if user_id != OWNER_ID:
             removed = await remove_sudo(user_id)
             if removed:
                 SUDOERS.remove(user_id)
-                count -= 1
+                count -= 3
     await message.reply_text(f"ʀᴇᴍᴏᴠᴇᴅ {count} ᴜsᴇʀs ғʀᴏᴍ ᴛʜᴇ sᴜᴅᴏ ʟɪsᴛ.")
