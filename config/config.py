@@ -8,18 +8,16 @@ load_dotenv()
 
 
 # Get this value from my.telegram.org/apps
-API_ID = int(getenv("API_ID")
-API_HASH = getenv("API_HASH",)
+API_ID = int(getenv("API_ID", ""))
+API_HASH = getenv("API_HASH", "")
 
 ## Get it from @Botfather in Telegram.
-BOT_TOKEN = getenv("BOT_TOKEN",)
-
+BOT_TOKEN = getenv("BOT_TOKEN")
 # Get Your bot username
-BOT_USERNAME = getenv("BOT_USERNAME" , "herormusic_bot")
+BOT_USERNAME = getenv("BOT_USERNAME" , "MusikV1Streambot")
 
 # Get your mongo url from cloud.mongodb.com
-MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://pakeya2:userbot@cluster0.vva0b.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
-
+MONGO_DB_URI = getenv("MONGO_DB_URI", None)
 CLEANMODE_DELETE_MINS = int(
     getenv("CLEANMODE_MINS", "5")
 )  # Remember to give value in Seconds
