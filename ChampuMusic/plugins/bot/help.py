@@ -478,8 +478,7 @@ async def about_callback(client: Client, callback_query: CallbackQuery):
             ),
         ],
         [
-            InlineKeyboardButton(text="[ ɪɴsᴛᴀ ]", url=f"https://www.instagram.com/shivanshu_deo/"),
-            InlineKeyboardButton(text="[ ʏᴏᴜᴛᴜʙᴇ ]", url=f"https://www.youtube.com/@itsMeChampu"),
+            InlineKeyboardButton(text="[ MUSIC ]", url=f"https://t.me/JooxManage"),
         ],
         [
             InlineKeyboardButton(text="● ʙᴀᴄᴋ ●", callback_data="about")
@@ -766,7 +765,7 @@ async def back_button_callback(client: Client, callback_query: CallbackQuery):
             InlineKeyboardButton(text="ᴏᴡɴᴇʀ", user_id=config.OWNER_ID[0]),
             InlineKeyboardButton(
                 text="RatePap",
-                url="@rated_pap",
+                url="https://t.me/rated_pap",
             ),
         ],
         [
