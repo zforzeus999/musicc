@@ -3,6 +3,10 @@ import random
 import string
 from time import time
 
+from pyrogram.errors import UserNotParticipant
+from config import SUPPORT_GROUP  # channel/grup tempat user wajib join
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+
 from pyrogram import filters
 from pyrogram.errors import FloodWait
 from pyrogram.types import InlineKeyboardMarkup, InputMediaPhoto, Message
