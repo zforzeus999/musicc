@@ -9,6 +9,29 @@ from pyrogram.errors import (
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 from config import PLAYLIST_IMG_URL, PRIVATE_BOT_MODE
+from pyrogram.errors import UserNotParticipant
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from config import F_SUB_CHANNEL
+
+async def check_fsub(client, user_id):
+    try:
+        member = await client.get_chat_member(F_SUB_CHANNEL, user_id)
+        # jika sudah join
+        return True
+    except UserNotParticipant:
+        return False
+
+def fsub_button():
+    return InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton(
+                    "Gabung Channel 📢",
+                    url=f"https://t.me/{F_SUB_CHANNEL}"
+                )
+            ]
+        ]
+    )
 from config import SUPPORT_GROUP 
 from strings import get_string
 from ChampuMusic import YouTube, app
@@ -28,21 +51,6 @@ from ChampuMusic.utils.database import (
 from ChampuMusic.utils.inline import botplaylist_markup
 
 links = {}
-
-@app.on_message(filters.command("play") & filters.group)
-async def play_command(client, message):
-    user_id = message.from_user.id
-
-    # cek fsub
-    from helpers.fsub import check_fsub, fsub_button
-    if not await check_fsub(client, user_id):
-        return await message.reply_text(
-            "Kamu harus join channel dulu untuk pakai bot ini.",
-            reply_markup=fsub_button()
-        )
-
-    # lanjutkan fungsi play aslinya di bawah
-    ...
     
 def PlayWrapper(command):
     async def wrapper(client, message):
