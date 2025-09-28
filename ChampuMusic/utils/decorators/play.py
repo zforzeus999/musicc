@@ -29,7 +29,21 @@ from ChampuMusic.utils.inline import botplaylist_markup
 
 links = {}
 
+@app.on_message(filters.command("play") & filters.group)
+async def play_command(client, message):
+    user_id = message.from_user.id
 
+    # cek fsub
+    from helpers.fsub import check_fsub, fsub_button
+    if not await check_fsub(client, user_id):
+        return await message.reply_text(
+            "Kamu harus join channel dulu untuk pakai bot ini.",
+            reply_markup=fsub_button()
+        )
+
+    # lanjutkan fungsi play aslinya di bawah
+    ...
+    
 def PlayWrapper(command):
     async def wrapper(client, message):
         language = await get_lang(message.chat.id)
