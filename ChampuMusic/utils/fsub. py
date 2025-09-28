@@ -1,0 +1,28 @@
+from pyrogram.errors import UserNotParticipant
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from config import F_SUB_CHANNEL
+
+async def check_fsub(client, user_id: int) -> bool:
+    """
+    Cek apakah user sudah join channel wajib.
+    """
+    try:
+        await client.get_chat_member(F_SUB_CHANNEL, user_id)
+        return True
+    except UserNotParticipant:
+        return False
+
+def fsub_button():
+    """
+    Tombol join channel.
+    """
+    return InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton(
+                    "📢 Gabung Channel",
+                    url=f"https://t.me/{F_SUB_CHANNEL}"
+                )
+            ]
+        ]
+    )
