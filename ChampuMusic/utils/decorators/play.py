@@ -276,7 +276,8 @@ def PlayWrapper(command):
             fplay,
         )
 
-    return wrapper            if message.from_user.id not in SUDOERS:
+    return wrapper           
+    if message.from_user.id not in SUDOERS:
                 admins = adminlist.get(message.chat.id)
                 if not admins:
                     return await message.reply_text(_["admin_18"])
