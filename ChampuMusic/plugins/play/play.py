@@ -27,40 +27,7 @@ from ChampuMusic.utils.inline.play import (
 from ChampuMusic.utils.inline.playlist import botplaylist_markup
 from ChampuMusic.utils.logger import play_logs
 from ChampuMusic.utils.stream.stream import stream
-from pyrogram.errors import UserNotParticipant
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from config import F_SUB_CHANNEL
 
-def PlayWrapper(command):
-    async def wrapper(client, message):
-        language = await get_lang(message.chat.id)
-        userbot = await get_assistant(message.chat.id)
-        _ = get_string(language)
-
-        # === Cek FSub di sini ===
-        if message.from_user:  # jangan cek anonymous
-            try:
-                await client.get_chat_member(F_SUB_CHANNEL, message.from_user.id)
-            except UserNotParticipant:
-                return await message.reply_text(
-                    "⚠️ Kamu harus join channel dulu untuk memakai bot ini.",
-                    reply_markup=InlineKeyboardMarkup(
-                        [
-                            [
-                                InlineKeyboardButton(
-                                    "📢 Gabung Channel",
-                                    url=f"https://t.me/{F_SUB_CHANNEL}"
-                                )
-                            ]
-                        ]
-                    )
-                )
-        # === lanjut kode asli PlayWrapper di bawah ===
-
-        ...
-        return await command(client, message, _, chat_id, video, channel, playmode, url, fplay)
-    return wrapper
-    
 user_last_message_time = {}
 user_command_count = {}
 SPAM_WINDOW_SECONDS = 5  # Set the time window for spam checks (5 seconds for example)
