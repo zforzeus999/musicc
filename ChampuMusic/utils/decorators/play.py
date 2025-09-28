@@ -13,25 +13,35 @@ from pyrogram.errors import UserNotParticipant
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from config import F_SUB_CHANNEL
 
-async def check_fsub(client, user_id):
-    try:
-        member = await client.get_chat_member(F_SUB_CHANNEL, user_id)
-        # jika sudah join
-        return True
-    except UserNotParticipant:
-        return False
+def PlayWrapper(command):
+    async def wrapper(client, message):
+        language = await get_lang(message.chat.id)
+        userbot = await get_assistant(message.chat.id)
+        _ = get_string(language)
 
-def fsub_button():
-    return InlineKeyboardMarkup(
-        [
-            [
-                InlineKeyboardButton(
-                    "Gabung Channel 📢",
-                    url=f"https://t.me/{F_SUB_CHANNEL}"
+        # === Cek FSub di sini ===
+        if message.from_user:  # jangan cek anonymous
+            try:
+                await client.get_chat_member(F_SUB_CHANNEL, message.from_user.id)
+            except UserNotParticipant:
+                return await message.reply_text(
+                    "⚠️ Kamu harus join channel dulu untuk memakai bot ini.",
+                    reply_markup=InlineKeyboardMarkup(
+                        [
+                            [
+                                InlineKeyboardButton(
+                                    "📢 Gabung Channel",
+                                    url=f"https://t.me/{F_SUB_CHANNEL}"
+                                )
+                            ]
+                        ]
+                    )
                 )
-            ]
-        ]
-    )
+        # === lanjut kode asli PlayWrapper di bawah ===
+
+        ...
+        return await command(client, message, _, chat_id, video, channel, playmode, url, fplay)
+    return wrapper
 from config import SUPPORT_GROUP 
 from strings import get_string
 from ChampuMusic import YouTube, app
