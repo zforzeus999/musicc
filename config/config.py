@@ -27,9 +27,6 @@ DURATION_LIMIT_MIN = int(
     getenv("DURATION_LIMIT", "600")
 )  # Remember to give value in Minutes
 
-# Channel / group yang wajib diikuti
-F_SUB_CHANNEL = "JooxManage"  # tanpa @
-
 EXTRA_PLUGINS = getenv(
     "EXTRA_PLUGINS",
     "True",
