@@ -517,7 +517,7 @@ async def play_music(client, CallbackQuery, _):
                 "link": message_link,
                 "path": file_path,
                 "dur": dur,
-            }
+            }}
 
             try:
                 await stream(
