@@ -512,7 +512,7 @@ async def play_music(client, CallbackQuery, _):
         except:
             return
     try:
-        chat_id, chan            details = {
+        chat_id = something  # ✅ benar
                 "title": file_name,
                 "link": message_link,
                 "path": file_path,
