@@ -1,7 +1,8 @@
-import uvloop
-
-uvloop.install()
-
+try:
+    import uvloop
+    uvloop.install()
+except ImportError:
+    pass
 import pyrogram
 from pyrogram import Client
 from pyrogram.enums import ChatMemberStatus
