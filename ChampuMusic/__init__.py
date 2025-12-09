@@ -1,3 +1,8 @@
+try:
+    import uvloop
+    uvloop.install()
+except:
+    pass
 from ChampuMusic.core.bot import ChampuBot
 from ChampuMusic.core.dir import dirr
 from ChampuMusic.core.git import git
