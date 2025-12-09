@@ -1,3 +1,8 @@
+try:
+    import uvloop
+    uvloop.install()
+except:
+    pass
 import asyncio
 import importlib
 
